@@ -217,6 +217,10 @@
     <Compile Include="Migrations\201711271832097_OverrideConventionForGigsName.Designer.cs">
       <DependentUpon>201711271832097_OverrideConventionForGigsName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711271849480_PopulateMealsTable.cs" />
+    <Compile Include="Migrations\201711271849480_PopulateMealsTable.Designer.cs">
+      <DependentUpon>201711271849480_PopulateMealsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -310,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711271832097_OverrideConventionForGigsName.resx">
       <DependentUpon>201711271832097_OverrideConventionForGigsName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271849480_PopulateMealsTable.resx">
+      <DependentUpon>201711271849480_PopulateMealsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
