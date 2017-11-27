@@ -209,10 +209,21 @@
     <Compile Include="Migrations\201711271659471_InitialModel.Designer.cs">
       <DependentUpon>201711271659471_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711271808189_CreateRecipeTable.cs" />
+    <Compile Include="Migrations\201711271808189_CreateRecipeTable.Designer.cs">
+      <DependentUpon>201711271808189_CreateRecipeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711271832097_OverrideConventionForGigsName.cs" />
+    <Compile Include="Migrations\201711271832097_OverrideConventionForGigsName.Designer.cs">
+      <DependentUpon>201711271832097_OverrideConventionForGigsName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Meal.cs" />
+    <Compile Include="Models\Recipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -293,6 +304,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201711271659471_InitialModel.resx">
       <DependentUpon>201711271659471_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271808189_CreateRecipeTable.resx">
+      <DependentUpon>201711271808189_CreateRecipeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711271832097_OverrideConventionForGigsName.resx">
+      <DependentUpon>201711271832097_OverrideConventionForGigsName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
