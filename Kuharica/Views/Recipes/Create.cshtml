@@ -6,23 +6,22 @@
 }
 
 <h2>Dodaj Recept</h2>
-
-<form>
+@using (Html.BeginForm("Create", "Recipes"))
+{
     <div class="form-group">
         @Html.LabelFor(r => r.Name)
-        @Html.TextBoxFor(r => r.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(r => r.Name, new {@class = "form-control"})
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(r => r.Meal)
-        @Html.DropDownListFor(r => r.Meal, new SelectList(Model.Meals, "Id", "Type"), "", new { @class = "form-control" })
+        @Html.DropDownListFor(r => r.Meal, new SelectList(Model.Meals, "Id", "Type"), "", new {@class = "form-control"})
     </div>
-    
+
     <div class="form-group">
         @Html.LabelFor(r => r.Time)
-        @Html.TextBoxFor(r => r.Time, new { @class = "form-control" })
+        @Html.TextBoxFor(r => r.Time, "{t}", new {@class = "form-control"})
     </div>
-    
-    <button type="submit" class="btn btn-primary">Save</button>
 
-</form>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

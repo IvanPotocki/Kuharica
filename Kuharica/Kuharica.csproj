@@ -222,6 +222,14 @@
     <Compile Include="Migrations\201711271849480_PopulateMealsTable.Designer.cs">
       <DependentUpon>201711271849480_PopulateMealsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711281542596_AddForeignKeyPropertiesToRecipe.cs" />
+    <Compile Include="Migrations\201711281542596_AddForeignKeyPropertiesToRecipe.Designer.cs">
+      <DependentUpon>201711281542596_AddForeignKeyPropertiesToRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711281717547_MakeDateTimeNullableInRecipesTable.cs" />
+    <Compile Include="Migrations\201711281717547_MakeDateTimeNullableInRecipesTable.Designer.cs">
+      <DependentUpon>201711281717547_MakeDateTimeNullableInRecipesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -320,6 +328,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711271849480_PopulateMealsTable.resx">
       <DependentUpon>201711271849480_PopulateMealsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711281542596_AddForeignKeyPropertiesToRecipe.resx">
+      <DependentUpon>201711281542596_AddForeignKeyPropertiesToRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711281717547_MakeDateTimeNullableInRecipesTable.resx">
+      <DependentUpon>201711281717547_MakeDateTimeNullableInRecipesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

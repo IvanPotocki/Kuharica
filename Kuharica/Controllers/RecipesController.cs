@@ -1,7 +1,8 @@
 ﻿using Kuharica.Models;
+using Kuharica.ViewModels;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
-using Kuharica.ViewModels;
 
 namespace Kuharica.Controllers
 {
@@ -13,8 +14,9 @@ namespace Kuharica.Controllers
         {
             _context = new ApplicationDbContext();
         }
-       
-        // GET: Recipes
+
+        // DropDownList
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new RecipeFormViewModel
@@ -24,5 +26,24 @@ namespace Kuharica.Controllers
 
             return View(viewModel);
         }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Create(RecipeFormViewModel viewModel)
+        {
+            var recipe = new Recipe
+            {
+                ChefId = User.Identity.GetUserId(),
+                Name = viewModel.Name,
+                Time = viewModel.Time,
+                MealId = viewModel.Meal
+            };
+
+            _context.Recipes.Add(recipe);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }
