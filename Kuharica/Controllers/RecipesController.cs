@@ -31,11 +31,17 @@ namespace Kuharica.Controllers
         [HttpPost]
         public ActionResult Create(RecipeFormViewModel viewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Meals = _context.Meals.ToList();
+                return View("Create", viewModel);
+            }
+
             var recipe = new Recipe
             {
                 ChefId = User.Identity.GetUserId(),
                 Name = viewModel.Name,
-                Time = viewModel.Time,
+                Time = viewModel.GetDateTime(),
                 MealId = viewModel.Meal
             };
 
