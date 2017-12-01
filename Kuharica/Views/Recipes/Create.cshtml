@@ -8,6 +8,7 @@
 <h2>Dodaj Recept</h2>
 @using (Html.BeginForm("Create", "Recipes"))
 {
+    @Html.AntiForgeryToken()
     <div class="form-group">
         @Html.LabelFor(r => r.Name)
         @Html.TextBoxFor(r => r.Name, new {@class = "form-control"})

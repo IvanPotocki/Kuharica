@@ -29,6 +29,7 @@ namespace Kuharica.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(RecipeFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
