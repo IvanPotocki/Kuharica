@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Kuharica.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Kuharica.Models;
 
 namespace Kuharica.Controllers
 {
@@ -16,10 +15,15 @@ namespace Kuharica.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private readonly ApplicationDbContext _context;
+
+        //
         public ManageController()
         {
+            _context = new ApplicationDbContext();
         }
-
+        //
+    
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;

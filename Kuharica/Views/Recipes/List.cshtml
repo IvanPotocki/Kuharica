@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Kuharica.Models.Recipe>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Recepti</h2>
+
+<p>
+    @Html.ActionLink("Dodaj Recept", "New", "Recipes", null, new { @class = "btn btn-primary" })
+</p>
+
+<table id="recipes" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Kuhar/ica</th>
+            <th>Recept</th>
+            <th>Vrsta jela</th>
+            <th>Obriši</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var table = $("#recipes").DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Croatian.json"
+                },
+                ajax: {
+                    url: "/api/recipes",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "chef.name"
+                    },
+                    {
+                        data: "name",
+                        render: function(data, type, recipe) {
+                            return "<a href='/recipes/edit/" + recipe.id + "'>" + recipe.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "meal.type"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-recipe-id=" + data + ">Obriši</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#recipes").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Jeste li sigurni da želite obrisati ovaj recept?", function(result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/recipes/" + button.attr("data-recipe-id"),
+                            method: "DELETE",
+                            success: function() {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+    </script>
+}

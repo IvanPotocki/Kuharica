@@ -17,8 +17,6 @@ namespace Kuharica.ViewModels
         [Required(ErrorMessage = "Odaberi vrstu jela")]
         public byte Meal { get; set; }
 
-        public IEnumerable<Meal> Meals { get; set; }
-
         [Display(Name = "Vrijeme pripreme")]
         [Required(ErrorMessage = "Unesi vrijeme")]
         [ValidTime(ErrorMessage = "Unesi ispravno vrijeme")]
@@ -29,5 +27,9 @@ namespace Kuharica.ViewModels
             var date = DateTime.Now.ToString("dd/MM/yyyy");
             return DateTime.Parse(string.Format("{0} {1}", date, Time));
         }
+
+        public IEnumerable<Meal> Meals { get; set; }
+
+        public Recipe Recipe { get; set; }
     }
 }

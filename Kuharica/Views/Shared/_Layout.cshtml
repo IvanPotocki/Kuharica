@@ -21,13 +21,14 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Recepti", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Dodaj Recept", "Create", "Recipes")</li>
+                    <li>@Html.ActionLink("Recepti", "List", "Recipes")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
+    </div>
+    <div class="jumbotron picture-header">
     </div>
     <div class="container body-content">
         @RenderBody()
@@ -37,8 +38,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -17,14 +17,15 @@ namespace Kuharica.Controllers
 
         // DropDownList
         [Authorize]
-        public ActionResult Create()
+        public ActionResult New()
         {
             var viewModel = new RecipeFormViewModel
             {
+                Recipe = new Recipe(),
                 Meals = _context.Meals.ToList()
             };
 
-            return View(viewModel);
+            return View("RecipeForm", viewModel);
         }
 
         [Authorize]
@@ -35,7 +36,7 @@ namespace Kuharica.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Meals = _context.Meals.ToList();
-                return View("Create", viewModel);
+                return View("RecipeForm", viewModel);
             }
 
             var recipe = new Recipe
@@ -49,8 +50,12 @@ namespace Kuharica.Controllers
             _context.Recipes.Add(recipe);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("List", "Recipes");
         }
 
+        public ViewResult List()
+        {
+            return View();
+        }
     }
 }
