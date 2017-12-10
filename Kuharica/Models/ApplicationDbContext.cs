@@ -17,5 +17,17 @@ namespace Kuharica.Models
         {
             return new ApplicationDbContext();
         }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Meal>()
+                .ToTable("RecipeCategory");
+
+            modelBuilder.Entity<Meal>()
+                .Property(p => p.Type)
+                .HasColumnName("Name");
+        }
     }
 }

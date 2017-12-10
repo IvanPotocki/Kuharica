@@ -1,14 +1,17 @@
-﻿@model Kuharica.ViewModels.RecipeFormViewModel
+﻿@using System.Web.Mvc.Html
+@model Kuharica.ViewModels.RecipeFormViewModel
 
 @{
     ViewBag.Title = "Dodaj Recept";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Dodaj Recept</h2>
-@using (Html.BeginForm("Create", "Recipes"))
+<h2>@Model.Heading</h2>
+@using (Html.BeginForm(Model.Action, "Recipes"))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(r => r.Id)
+
     <div class="form-group">
         @Html.LabelFor(r => r.Name)
         @Html.TextBoxFor(r => r.Name, new {@class = "form-control"})
@@ -22,8 +25,32 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(r => r.Description)
+        @Html.TextAreaFor(r => r.Description, new { @class = "form-control"})
+        @*@Html.ValidationMessageFor(r => r.Description)*@
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(r => r.Ingredient)
+        @Html.TextAreaFor(r => r.Ingredient, new { @class = "form-control"})
+        @*@Html.ValidationMessageFor(r => r.Ingredient)*@
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(r => r.Serving)
+        @Html.TextBoxFor(r => r.Serving, new {@class = "form-control"})
+        @*@Html.ValidationMessageFor(r => r.Serving)*@
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(r => r.PreparationInstruction)
+        @Html.TextAreaFor(r => r.PreparationInstruction, new { @class = "form-control" })
+        @*@Html.ValidationMessageFor(r => r.PreparationInstruction)*@
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(r => r.Time)
-        @Html.TextBoxFor(r => r.Time, new {@class = "form-control"})
+        @Html.TextBoxFor(r => r.Time, new {@class = "form-control", placeholder = DateTime.Now.ToString("HH:mm") })
         @Html.ValidationMessageFor(r => r.Time)
     </div>
 

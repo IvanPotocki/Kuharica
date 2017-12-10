@@ -15,7 +15,7 @@ namespace Kuharica.App_Start
 
 
             // Dto to Domain
-            CreateMap<RecipeDto, Recipe>();
+            //CreateMap<RecipeDto, Recipe>();
 
         }
     }

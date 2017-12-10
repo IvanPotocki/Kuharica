@@ -22,5 +22,8 @@ namespace Kuharica.Dtos
         public ApplicationUserDto Chef { get; set; }
 
         public MealDto Meal { get; set; }
+
+        public DateTime DateAdded { get; set; }
+
     }
 }

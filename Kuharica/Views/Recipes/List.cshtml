@@ -17,6 +17,8 @@
             <th>Kuhar/ica</th>
             <th>Recept</th>
             <th>Vrsta jela</th>
+            <th>Datum objave</th>
+            <th>Datum uređivanja</th>
             <th>Obriši</th>
         </tr>
     </thead>
@@ -43,11 +45,24 @@
                     {
                         data: "name",
                         render: function(data, type, recipe) {
-                            return "<a href='/recipes/edit/" + recipe.id + "'>" + recipe.name + "</a>";
+                            return "<a href='/recipes/details/" + recipe.id + "'>" + recipe.name + "</a>";
                         }
                     },
                     {
                         data: "meal.type"
+                    },
+                    {
+                        data: "dateAdded",
+                        render: function(data) {
+                            return (moment(data).format("DD.MM.YYYY"));
+                        }
+                    },
+                    {
+                        // Edit date
+                        data: "time",
+                        render: function(data) {
+                            return (moment(data).format("DD.MM.YYYY"));
+                        }
                     },
                     {
                         data: "id",

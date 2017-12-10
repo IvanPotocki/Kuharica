@@ -247,11 +247,23 @@
     <Compile Include="Migrations\201712051603141_AddNameToApplicationUser.Designer.cs">
       <DependentUpon>201712051603141_AddNameToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712071452548_ChangeNameOfMealTableToRecipeCategoryTable.cs" />
+    <Compile Include="Migrations\201712071452548_ChangeNameOfMealTableToRecipeCategoryTable.Designer.cs">
+      <DependentUpon>201712071452548_ChangeNameOfMealTableToRecipeCategoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071635152_AddDateAddedToRecipe.cs" />
+    <Compile Include="Migrations\201712071635152_AddDateAddedToRecipe.Designer.cs">
+      <DependentUpon>201712071635152_AddDateAddedToRecipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712071922170_AddRecipeDetailsToRecipe.cs" />
+    <Compile Include="Migrations\201712071922170_AddRecipeDetailsToRecipe.Designer.cs">
+      <DependentUpon>201712071922170_AddRecipeDetailsToRecipe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Models\Meal.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -469,6 +481,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
@@ -509,6 +522,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Recipes\RecipeForm.cshtml" />
     <Content Include="Views\Recipes\List.cshtml" />
+    <Content Include="Views\Recipes\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -539,6 +553,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712051603141_AddNameToApplicationUser.resx">
       <DependentUpon>201712051603141_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071452548_ChangeNameOfMealTableToRecipeCategoryTable.resx">
+      <DependentUpon>201712071452548_ChangeNameOfMealTableToRecipeCategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071635152_AddDateAddedToRecipe.resx">
+      <DependentUpon>201712071635152_AddDateAddedToRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712071922170_AddRecipeDetailsToRecipe.resx">
+      <DependentUpon>201712071922170_AddRecipeDetailsToRecipe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

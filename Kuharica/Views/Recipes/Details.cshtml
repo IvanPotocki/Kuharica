@@ -1,0 +1,36 @@
+﻿@using Kuharica.Controllers
+@model Kuharica.Models.Recipe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Recept</h2>
+<p>@Html.ActionLink("Uredi", "Edit",  new { id = Model.Id }, new { @class = "btn btn-primary" })</p>
+
+<div class="col-md-6">
+    <p><strong>Priprema</strong> <br /></p>
+    <p> @Html.Raw(Model.PreparationInstruction)</p>
+</div>
+
+<div class="col-md-6">
+    <div>
+        <p><strong>Kuhar</strong> @Html.DisplayFor(model => model.Chef.Name)</p>
+
+        <p><strong>Opis Recepta</strong> <br /> @Html.DisplayFor(model => model.Description)</p>
+
+        <p><strong>Broj porcija</strong> <br /> @Html.DisplayFor(model => model.Serving)</p>
+
+        <p><strong>Vrijeme pripreme</strong> <br /> @Html.DisplayFor(model => model.Time)</p>
+
+        <p><strong>Datum Objave</strong> <br />@Html.DisplayFor(model => model.DateAdded)</p>
+
+        <p><strong>Sastojci</strong></p>
+        <div><ul>
+                @Html.Raw(Model.Ingredient)
+            </ul>
+        </div>
+        
+    </div>
+</div>

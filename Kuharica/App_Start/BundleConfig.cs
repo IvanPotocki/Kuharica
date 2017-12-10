@@ -12,6 +12,7 @@ namespace Kuharica
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
+                        "~/Scripts/moment.js",
                         "~/Scripts/Datatables/jquery.datatables.js",
                         "~/Scripts/Datatables/datatables.bootstrap.js"
                         ));
