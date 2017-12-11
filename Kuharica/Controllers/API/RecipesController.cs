@@ -23,7 +23,7 @@ namespace Kuharica.Controllers.API
                 .Include(r => r.Meal)
                 .Include(r => r.Chef)
                 .ToList()
-                .Select(Mapper.Map<Recipe, RecipeDto>);     
+                .Select(Mapper.Map<Recipe, RecipeDto>);
 
             return Ok(recipes);
 
@@ -41,7 +41,7 @@ namespace Kuharica.Controllers.API
         }
 
         // DELETE /api/recipes/id
-        [HttpDelete]
+        [System.Web.Http.HttpDelete]
         public IHttpActionResult DeleteRecipe(int id)
         {
             var recipe = _context.Recipes.SingleOrDefault(r => r.Id == id);

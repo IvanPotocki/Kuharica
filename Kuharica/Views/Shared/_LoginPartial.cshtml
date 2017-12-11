@@ -7,16 +7,29 @@
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Pozdrav " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        <li class="notifications">
+            <a href="notificationscount">
+                <i class="glyphicon glyphicon-globe"></i>
+                <span class="badge js-notifications-count hide"></span>
+            </a>
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="@Url.Action("Mine", "Recipes")">Moji recepti</a></li>
+                <li><a href="y">Tjedni meni</a></li>
+                <li><a href="x">Koga pratim?</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Odjavi se</a></li>
+            </ul>
+        </li>
     </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("REGISTRACIJA", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("PRIJAVI SE", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

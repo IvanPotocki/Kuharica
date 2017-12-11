@@ -122,5 +122,11 @@ namespace Kuharica.Controllers
         {
             return View();
         }
+
+        public ViewResult Mine()
+        {
+            return View();
+        }
+
     }
 }

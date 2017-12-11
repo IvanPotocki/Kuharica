@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Kuharica.Models.Recipe>
+    
+@{
+    ViewBag.Title = "Moji recepti";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Moji recepti</h2>
+
+<p>
+    @Html.ActionLink("Dodaj Recept", "New", "Recipes", null, new { @class = "btn btn-primary" })
+</p>
+
+<table id="recipes" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Recept</th>
+            <th>Vrsta jela</th>
+            <th>Datum objave</th>
+            <th>Datum uređivanja</th>
+            <th>Obriši</th>
+            <th>Uredi</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+
+            var table = $("#recipes").DataTable({
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.16/i18n/Croatian.json"
+                },
+                ajax: {
+                    url: "/api/myrecipes",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, recipe) {
+                            return "<a href='/myrecipes/details/" + recipe.id + "'>" + recipe.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "meal.type"
+                    },
+                    {
+                        data: "dateAdded",
+                        render: function(data) {
+                            return (moment(data).format("DD.MM.YYYY"));
+                        }
+                    },
+                    {
+                        // Edit date
+                        data: "time",
+                        render: function(data) {
+                            return (moment(data).format("DD.MM.YYYY"));
+                        }
+                    },
+                    {   
+                        "sortable": false,
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn btn-danger btn-xs js-delete' data-recipe-id=" + data + "><span class='glyphicon glyphicon-remove'></span></button>";
+                        }
+                    },
+                    {
+                        "sortable": false,
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn btn-info btn-xs js-edit' data-recipe-id=" + data + "><span class='glyphicon glyphicon-pencil'></span></button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#recipes").on("click",
+                ".js-delete",
+                function() {
+                    var button = $(this);
+
+                    bootbox.confirm("Jeste li sigurni da želite obrisati ovaj recept?",
+                        function(result) {
+                            if (result) {
+                                $.ajax({
+                                    url: "/api/myrecipes/" + button.attr("data-recipe-id"),
+                                    method: "DELETE",
+                                    success: function() {
+                                        table.row(button.parents("tr")).remove().draw();
+                                    }
+                                });
+                            }
+                        });
+                });
+        
+
+            $("#recipes").on("click",
+                    ".js-edit",
+                    function() {
+                        var button = $(this);
+
+                        bootbox.confirm("Jeste li sigurni da želite urediti ovaj recept?",
+                            function(result) {
+                                if (result) {
+                                    var id = button.attr("data-recipe-id");
+                                    window.location = 'Edit/' + id;
+                                }
+                            });
+                    });
+        });
+</script>
+
+}

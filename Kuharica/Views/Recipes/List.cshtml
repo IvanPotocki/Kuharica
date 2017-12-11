@@ -7,10 +7,6 @@
 
 <h2>Recepti</h2>
 
-<p>
-    @Html.ActionLink("Dodaj Recept", "New", "Recipes", null, new { @class = "btn btn-primary" })
-</p>
-
 <table id="recipes" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -19,7 +15,6 @@
             <th>Vrsta jela</th>
             <th>Datum objave</th>
             <th>Datum uređivanja</th>
-            <th>Obriši</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -64,12 +59,6 @@
                             return (moment(data).format("DD.MM.YYYY"));
                         }
                     },
-                    {
-                        data: "id",
-                        render: function(data) {
-                            return "<button class='btn-link js-delete' data-recipe-id=" + data + ">Obriši</button>";
-                        }
-                    }
                 ]
             });
 
