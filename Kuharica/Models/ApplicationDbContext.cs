@@ -7,7 +7,8 @@ namespace Kuharica.Models
     {
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Meal> Meals { get; set; }
-    
+        public DbSet<Following> Followings { get; set; }
+
         public ApplicationDbContext()
             : base("KuharicaContext", throwIfV1Schema: false)
         {
@@ -28,6 +29,16 @@ namespace Kuharica.Models
             modelBuilder.Entity<Meal>()
                 .Property(p => p.Type)
                 .HasColumnName("Name");
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Followers)
+                .WithRequired(f => f.Followee)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasMany(u => u.Followees)
+                .WithRequired(f => f.Follower)
+                .WillCascadeOnDelete(false);
         }
     }
 }

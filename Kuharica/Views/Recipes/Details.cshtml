@@ -1,13 +1,16 @@
-﻿@using Kuharica.Controllers
-@model Kuharica.Models.Recipe
+﻿@model Kuharica.Models.Recipe
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
 <h2>Recept</h2>
 <p>@Html.ActionLink("Uredi", "Edit",  new { id = Model.Id }, new { @class = "btn btn-primary" })</p>
+
+<button data-user-id="@Model.ChefId" class="btn btn-default js-toggle-following">Prati?</button>
+
+
 
 <div class="col-md-6">
     <p><strong>Priprema</strong> <br /></p>
@@ -17,7 +20,7 @@
 <div class="col-md-6">
     <div>
         <p><strong>Kuhar</strong> @Html.DisplayFor(model => model.Chef.Name)</p>
-
+        
         <p><strong>Opis Recepta</strong> <br /> @Html.DisplayFor(model => model.Description)</p>
 
         <p><strong>Broj porcija</strong> <br /> @Html.DisplayFor(model => model.Serving)</p>
@@ -31,6 +34,26 @@
                 @Html.Raw(Model.Ingredient)
             </ul>
         </div>
-        
+
     </div>
 </div>
+
+@section scripts
+{   
+    <script>
+
+        $(".js-toggle-following").click(function (e) {
+            var button = $(e.target);
+            $.post("/api/followings", { followeeId : button.attr("data-user-id") }) 
+                .done(function () {
+                    button.removeClass("btn-default")
+                        .addClass("btn-info")
+                        .text("Pratim");
+                })
+                .fail(function () {
+                    alert("Something failed!");
+                });
+        });
+
+    </script>
+}

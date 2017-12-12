@@ -65,7 +65,7 @@ a, .btn-link {
 
     .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
         color: #52656B;
-        background-color: #E5955C;
+        background-color: #ffeb3b;
     }
 
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {

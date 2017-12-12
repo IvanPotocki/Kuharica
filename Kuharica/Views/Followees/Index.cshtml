@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Kuharica.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kuhari</h2>
+
+<h1>Pratim...</h1>
+
+<ul>
+    @foreach (var chef in Model)
+    {
+        <li>@chef.Name</li>
+    }
+</ul>

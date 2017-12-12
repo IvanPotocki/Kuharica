@@ -13,6 +13,7 @@ namespace Kuharica.App_Start
             CreateMap<Recipe, MyRecipeDto>();
             CreateMap<Meal, MealDto>();
             CreateMap<ApplicationUser, ApplicationUserDto>();
+            //CreateMap<Following, FollowingDto>();
 
 
             // Dto to Domain

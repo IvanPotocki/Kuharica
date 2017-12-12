@@ -209,12 +209,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\FollowingsController.cs" />
     <Compile Include="Controllers\API\MyRecipesController.cs" />
     <Compile Include="Controllers\API\RecipesController.cs" />
+    <Compile Include="Controllers\FolloweesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipesController.cs" />
     <Compile Include="Dtos\ApplicationUserDto.cs" />
+    <Compile Include="Dtos\FollowingDto.cs" />
     <Compile Include="Dtos\MealDto.cs" />
     <Compile Include="Dtos\MyRecipeDto.cs" />
     <Compile Include="Dtos\RecipeDto.cs" />
@@ -261,6 +264,10 @@
     <Compile Include="Migrations\201712071922170_AddRecipeDetailsToRecipe.Designer.cs">
       <DependentUpon>201712071922170_AddRecipeDetailsToRecipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712112245020_AddFollowing.cs" />
+    <Compile Include="Migrations\201712112245020_AddFollowing.Designer.cs">
+      <DependentUpon>201712112245020_AddFollowing.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -273,6 +280,7 @@
     <Compile Include="ViewModels\RecipeFormViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\ValidTime.cs" />
+    <Compile Include="Models\Following.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-flatty.css" />
@@ -526,6 +534,7 @@
     <Content Include="Views\Recipes\Details.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Recipes\Mine.cshtml" />
+    <Content Include="Views\Followees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -565,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712071922170_AddRecipeDetailsToRecipe.resx">
       <DependentUpon>201712071922170_AddRecipeDetailsToRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712112245020_AddFollowing.resx">
+      <DependentUpon>201712112245020_AddFollowing.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
