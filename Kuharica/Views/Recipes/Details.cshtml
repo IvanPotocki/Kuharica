@@ -1,59 +1,88 @@
-﻿@model Kuharica.Models.Recipe
+﻿@using Microsoft.AspNet.Identity
+@model Kuharica.ViewModels.RecipeDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml"; 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Recept</h2>
-<p>@Html.ActionLink("Uredi", "Edit",  new { id = Model.Id }, new { @class = "btn btn-primary" })</p>
+<div class="page-header">
+    @if (User.Identity.GetUserId() == Model.Recipe.ChefId)
+    {
+        <p> @Html.ActionLink("Uredi", "Edit", new { id = Model.Recipe.Id }, new { @class = "btn btn-primary" })</p>
+    }
 
-<button data-user-id="@Model.ChefId" class="btn btn-default js-toggle-following">Prati?</button>
-
-
-
-<div class="col-md-6">
-    <p><strong>Priprema</strong> <br /></p>
-    <p> @Html.Raw(Model.PreparationInstruction)</p>
+    @if ((User.Identity.GetUserId() != Model.Recipe.ChefId) && (User.Identity.IsAuthenticated))
+    {
+        if (Model.IsFollowing)
+        {
+            <button data-user-id="@Model.Recipe.ChefId" class="btn btn-info js-toggle-following">Pratim</button>
+        }
+        else
+        {
+            <button data-user-id="@Model.Recipe.ChefId" class="btn btn-default js-toggle-following">Prati?</button>
+        }
+    }
 </div>
 
-<div class="col-md-6">
-    <div>
-        <p><strong>Kuhar</strong> @Html.DisplayFor(model => model.Chef.Name)</p>
-        
-        <p><strong>Opis Recepta</strong> <br /> @Html.DisplayFor(model => model.Description)</p>
 
-        <p><strong>Broj porcija</strong> <br /> @Html.DisplayFor(model => model.Serving)</p>
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <p><strong>Kuhar:</strong> @Html.DisplayFor(model => model.Recipe.Chef.Name)</p>
 
-        <p><strong>Vrijeme pripreme</strong> <br /> @Html.DisplayFor(model => model.Time)</p>
+        <p><strong>Opis Recepta</strong> <br /> @Html.DisplayFor(model => model.Recipe.Description)</p>
 
-        <p><strong>Datum Objave</strong> <br />@Html.DisplayFor(model => model.DateAdded)</p>
+        <p><strong>Broj porcija</strong> <br /> @Html.DisplayFor(model => model.Recipe.Serving)</p>
 
-        <p><strong>Sastojci</strong></p>
-        <div><ul>
-                @Html.Raw(Model.Ingredient)
-            </ul>
-        </div>
+        <p><strong>Vrijeme pripreme</strong> <br /> @Html.DisplayFor(model => model.Recipe.Time)</p>
 
+        <p><strong>Datum Objave</strong> <br />@Html.DisplayFor(model => model.Recipe.DateAdded)</p>
+
+        <p><strong>Sastojci</strong> <br />@Html.DisplayFor(model => model.Recipe.Ingredient)</p>
+    </div>
+    
+    <div class="col-md-8">
+        <p><strong>Priprema</strong> <br /></p>
+        <p> @Html.Raw(Model.Recipe.PreparationInstruction)</p>
     </div>
 </div>
+</div>
 
-@section scripts
-{   
-    <script>
 
-        $(".js-toggle-following").click(function (e) {
-            var button = $(e.target);
-            $.post("/api/followings", { followeeId : button.attr("data-user-id") }) 
-                .done(function () {
-                    button.removeClass("btn-default")
-                        .addClass("btn-info")
-                        .text("Pratim");
-                })
-                .fail(function () {
-                    alert("Something failed!");
-                });
-        });
+    @section scripts
+{
+        <script>
 
-    </script>
-}
+            $(".js-toggle-following").click(function (e) {
+                var button = $(e.target);
+                if (button.hasClass("btn-default")) {
+                    $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                        .done(function () {
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Pratim");
+                        })
+                        .fail(function () {
+                            alert("Greška1");
+                        });
+                } else {
+                    $.ajax({
+                        url: "/api/followings/" + button.attr("data-user-id"),
+                        method: "DELETE"
+                    })
+                        .done(function () {
+                            button
+                                .removeClass("btn-info")
+                                .addClass("btn-default")
+                                .text("Prati?");
+                        })
+                        .fail(function () {
+                            alert("Greška2");
+                        });
+                }
+            });
+
+        </script>
+    }

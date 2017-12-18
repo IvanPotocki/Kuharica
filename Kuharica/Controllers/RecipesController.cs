@@ -70,7 +70,17 @@ namespace Kuharica.Controllers
             if (recipe == null)
                 return HttpNotFound();
 
-            return View(recipe);
+            var viewModel = new RecipeDetailsViewModel {Recipe = recipe};
+
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+
+                viewModel.IsFollowing = _context.Followings
+                    .Any(f => f.FolloweeId == recipe.ChefId && f.FollowerId == userId);
+            }
+
+            return View("Details", viewModel);
         }
 
         [Authorize]

@@ -19,7 +19,7 @@ namespace Kuharica.Controllers
                 .Include(r => r.Chef)
                 .Include(r => r.Meal);
                 
-            return View(recipes);
+            return View();
         }
 
         public ActionResult About()

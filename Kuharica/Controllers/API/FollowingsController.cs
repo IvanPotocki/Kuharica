@@ -36,5 +36,22 @@ namespace Kuharica.Controllers.API
 
             return Ok();
         }
+
+        [HttpDelete]
+        public IHttpActionResult Unfollow(string id)
+        {
+            var userId = User.Identity.GetUserId();
+
+            var following = _context.Followings
+                .SingleOrDefault(f => f.FollowerId == userId && f.FolloweeId == id);
+
+            if (following == null)
+                return NotFound();
+
+            _context.Followings.Remove(following);
+            _context.SaveChanges();
+
+            return Ok();
+        }
     }
 }
